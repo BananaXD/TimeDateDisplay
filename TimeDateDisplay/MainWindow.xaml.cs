@@ -37,10 +37,14 @@ namespace TimeDateDisplay
         private void AlwaysOnTop_Click(object sender, RoutedEventArgs e) {
             _isAlwaysOnTop = !_isAlwaysOnTop;
             Topmost = _isAlwaysOnTop;
-            MessageBox.Show($"Always On Top: {(_isAlwaysOnTop ? "Enabled" : "Disabled")}",
-                            "Always On Top",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
+        }
+
+        private void SetOpacity_Click(object sender, RoutedEventArgs e) {
+            if (sender is MenuItem menuItem && menuItem.Tag is string tag) {
+                if (double.TryParse(tag, out double opacity)) {
+                    Opacity = opacity;
+                }
+            }
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e) {

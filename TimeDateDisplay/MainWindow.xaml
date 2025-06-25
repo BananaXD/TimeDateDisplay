@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimeDateDisplay"
         mc:Ignorable="d"
-        Title="Always On Top Clock"
+Title="Always On Top Clock"
         Height="300"
         Width="400"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="#FF1E1E1E"
         Foreground="White"
-        ResizeMode="CanResizeWithGrip">
+        ResizeMode="CanResizeWithGrip"
+        Opacity="1.0">
     <Window.Resources>
         <Style TargetType="Border">
             <Setter Property="CornerRadius" Value="10"/>
@@ -34,21 +35,29 @@
                 <Menu VerticalAlignment="Top" Margin="0,30,0,0" Background="#FF3A3A3A" Foreground="White">
                     <MenuItem Header="Options">
                         <MenuItem Header="Always On Top" Click="AlwaysOnTop_Click"/>
+                        <MenuItem Header="Opacity">
+                            <MenuItem Header="25%" Click="SetOpacity_Click" Tag="0.25"/>
+                            <MenuItem Header="50%" Click="SetOpacity_Click" Tag="0.50"/>
+                            <MenuItem Header="75%" Click="SetOpacity_Click" Tag="0.75"/>
+                            <MenuItem Header="100%" Click="SetOpacity_Click" Tag="1.0"/>
+                        </MenuItem>
                         <MenuItem Header="Exit" Click="Exit_Click"/>
                     </MenuItem>
                 </Menu>
 
                 <!-- Time and Date Display -->
-                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <TextBlock x:Name="TimeText"
-                               FontSize="48"
-                               FontWeight="Bold"
-                               TextAlignment="Center"
-                               Margin="0,0,0,10"/>
-                    <TextBlock x:Name="DateText"
-                               FontSize="24"
-                               TextAlignment="Center"/>
-                </StackPanel>
+                <Viewbox Margin="10,10,10,10">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock x:Name="TimeText"
+                                   FontSize="48"
+                                   FontWeight="Bold"
+                                   TextAlignment="Center"
+                                   Margin="0,0,0,10"/>
+                        <TextBlock x:Name="DateText"
+                                   FontSize="24"
+                                   TextAlignment="Center"/>
+                    </StackPanel>
+                </Viewbox>
             </Grid>
         </Border>
     </Grid>
