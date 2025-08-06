@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimeDateDisplay"
         mc:Ignorable="d"
-Title="Always On Top Clock"
+        Title="Always On Top Clock"
         Height="300"
         Width="400"
         WindowStyle="None"
@@ -15,9 +15,6 @@ Title="Always On Top Clock"
         ResizeMode="CanResizeWithGrip"
         Opacity="1.0">
     <Window.Resources>
-        <Style TargetType="Border">
-            <Setter Property="CornerRadius" Value="10"/>
-        </Style>
     </Window.Resources>
     <Grid>
         <!-- Main Border -->
@@ -34,6 +31,8 @@ Title="Always On Top Clock"
                 <!-- Menu -->
                 <Menu VerticalAlignment="Top" Margin="0,30,0,0" Background="#FF3A3A3A" Foreground="White">
                     <MenuItem Header="Options">
+                        <MenuItem Header="Settings..." Click="Settings_Click"/>
+                        <Separator/>
                         <MenuItem Header="Always On Top" Click="AlwaysOnTop_Click"/>
                         <MenuItem Header="Opacity">
                             <MenuItem Header="25%" Click="SetOpacity_Click" Tag="0.25"/>
@@ -41,12 +40,13 @@ Title="Always On Top Clock"
                             <MenuItem Header="75%" Click="SetOpacity_Click" Tag="0.75"/>
                             <MenuItem Header="100%" Click="SetOpacity_Click" Tag="1.0"/>
                         </MenuItem>
+                        <Separator/>
                         <MenuItem Header="Exit" Click="Exit_Click"/>
                     </MenuItem>
                 </Menu>
 
                 <!-- Time and Date Display -->
-                <Viewbox Margin="10,10,10,10">
+                <Viewbox Margin="5,60,5,5">
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock x:Name="TimeText"
                                    FontSize="48"
