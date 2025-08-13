@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         Title="Settings"
-        Height="450"
+        Height="600"
         Width="400"
         WindowStyle="ToolWindow"
         ResizeMode="NoResize"
@@ -13,6 +13,7 @@
 
     <Grid Margin="20">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -133,8 +134,23 @@
             </Grid>
         </StackPanel>
 
+        <StackPanel Grid.Row="4" Margin="0,0,0,20" Orientation="Horizontal" HorizontalAlignment="Center">
+            <ComboBox x:Name="FontTimeComboBox" Grid.Row="4" Height="40" MinWidth="70"
+          Margin="5"
+          DisplayMemberPath="Source"
+          SelectedValuePath="Source"
+          SelectedValue="{Binding FontTimeFamilyName}"
+          SelectionChanged="FontTimeComboBox_SelectionChanged"/>
+            <ComboBox x:Name="FontDateComboBox" Grid.Row="4" Height="40" MinWidth="70"
+          Margin="5"
+          DisplayMemberPath="Source"
+          SelectedValuePath="Source"
+          SelectedValue="{Binding FontDateFamilyName}"
+          SelectionChanged="FontDateComboBox_SelectionChanged"/>
+        </StackPanel>
+        
         <!-- Preview -->
-        <Border Grid.Row="4" 
+        <Border Grid.Row="5" 
                 x:Name="PreviewBorder"
                 Background="#FF2D2D2D" 
                 Margin="0,10,0,20"
@@ -155,7 +171,7 @@
         </Border>
 
         <!-- Buttons -->
-        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="OKButton"
                     Content="OK"
                     Width="80"

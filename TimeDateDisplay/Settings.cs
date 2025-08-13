@@ -6,6 +6,24 @@ namespace TimeDateDisplay {
         public bool AlwaysOnTop { get; set; } = true;
         public string FontColor { get; set; } = "#FFFFFF"; // Default white color
         public string BackgroundColor { get; set; } = "#FF2D2D2D"; // Default dark gray color
+        public string FontTimeFamilyName { get; set; } = "Segoe UI"; // Default font
+        public string FontDateFamilyName { get; set; } = "Segoe UI"; // Default font
+
+        public FontFamily GetDateFontFamily() {
+            try {
+                return new FontFamily(FontDateFamilyName);
+            } catch {
+                return new FontFamily("Segoe UI");
+            }
+        }
+
+        public FontFamily GetTimeFontFamily() {
+            try {
+                return new FontFamily(FontTimeFamilyName);
+            } catch {
+                return new FontFamily("Segoe UI");
+            }
+        }
 
         // Convert string color to SolidColorBrush
         public SolidColorBrush GetFontBrush() {

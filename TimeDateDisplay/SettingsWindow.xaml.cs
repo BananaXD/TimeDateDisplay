@@ -12,9 +12,18 @@ namespace TimeDateDisplay {
                 Opacity = currentSettings.Opacity,
                 AlwaysOnTop = currentSettings.AlwaysOnTop,
                 FontColor = currentSettings.FontColor,
-                BackgroundColor = currentSettings.BackgroundColor
+                BackgroundColor = currentSettings.BackgroundColor,
+                FontTimeFamilyName = currentSettings.FontTimeFamilyName,
+                FontDateFamilyName = currentSettings.FontDateFamilyName
             };
+
+            this.DataContext = Settings;
+
             InitializeComponent();
+            this.Loaded += (o, e) => LoadSettings();
+
+            FontTimeComboBox.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
+            FontDateComboBox.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
             _isInitialized = true;
 
             LoadSettings();
@@ -26,6 +35,9 @@ namespace TimeDateDisplay {
             FontColorTextBox.Text = Settings.FontColor;
             BackgroundColorTextBox.Text = Settings.BackgroundColor;
 
+            FontDateComboBox.SelectedValue = Settings.FontDateFamilyName;
+            FontTimeComboBox.SelectedValue = Settings.FontTimeFamilyName;
+
             // Set color picker values
             try {
                 FontColorPicker.SelectedColor = (Color)ColorConverter.ConvertFromString(Settings.FontColor);
@@ -36,6 +48,23 @@ namespace TimeDateDisplay {
             UpdateFontColorPreview();
             UpdateBackgroundColorPreview();
             UpdatePreview();
+        }
+
+        private void FontTimeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (!_isInitialized) return;
+
+            if (FontTimeComboBox.SelectedValue is string selectedFont && selectedFont is not null) {
+                Settings.FontTimeFamilyName = selectedFont;
+                UpdatePreview();
+            }
+        }
+        private void FontDateComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (!_isInitialized) return;
+
+            if (FontDateComboBox.SelectedValue is string selectedFont) {
+                Settings.FontDateFamilyName = selectedFont;
+                UpdatePreview();
+            }
         }
 
         private void OpacitySlider_ValueChanged(object sender, RoutedEventArgs e) {
@@ -100,6 +129,9 @@ namespace TimeDateDisplay {
             PreviewDate.Foreground = fontBrush;
             PreviewBorder.Background = backgroundBrush;
 
+            PreviewTime.FontFamily = Settings.GetTimeFontFamily();
+            PreviewDate.FontFamily = Settings.GetDateFontFamily(); 
+            
             // Update preview with current time
             PreviewTime.Text = DateTime.Now.ToString("HH:mm:ss");
             PreviewDate.Text = DateTime.Now.ToString("dddd, MMMM dd, yyyy");
@@ -129,6 +161,8 @@ namespace TimeDateDisplay {
             Settings.AlwaysOnTop = AlwaysOnTopCheckBox.IsChecked ?? false;
             Settings.FontColor = FontColorTextBox.Text;
             Settings.BackgroundColor = BackgroundColorTextBox.Text;
+            Settings.FontTimeFamilyName = FontTimeComboBox.SelectedValue as string;
+            Settings.FontDateFamilyName = FontDateComboBox.SelectedValue as string;
 
             DialogResult = true;
             Close();

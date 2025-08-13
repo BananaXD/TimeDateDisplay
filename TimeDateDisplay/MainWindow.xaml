@@ -30,18 +30,18 @@
 
                 <!-- Menu -->
                 <Menu VerticalAlignment="Top" Margin="0,30,0,0" Background="#FF3A3A3A" Foreground="White">
-                    <MenuItem Header="Options">
-                        <MenuItem Header="Settings..." Click="Settings_Click"/>
+                    <MenuItem Header="Options" Background="#FF3A3A3A" Foreground="White">
+                        <MenuItem Header="Settings..." Click="Settings_Click" Background="#FF3A3A3A" Foreground="White"/>
                         <Separator/>
-                        <MenuItem Header="Always On Top" Click="AlwaysOnTop_Click"/>
-                        <MenuItem Header="Opacity">
-                            <MenuItem Header="25%" Click="SetOpacity_Click" Tag="0.25"/>
-                            <MenuItem Header="50%" Click="SetOpacity_Click" Tag="0.50"/>
-                            <MenuItem Header="75%" Click="SetOpacity_Click" Tag="0.75"/>
-                            <MenuItem Header="100%" Click="SetOpacity_Click" Tag="1.0"/>
+                        <MenuItem Header="Always On Top" Click="AlwaysOnTop_Click" Background="#FF3A3A3A" Foreground="White"/>
+                        <MenuItem Header="Opacity"  Background="#FF3A3A3A" Foreground="White">
+                            <MenuItem Header="25%" Click="SetOpacity_Click" Tag="0.25" Background="#FF3A3A3A" Foreground="White"/>
+                            <MenuItem Header="50%" Click="SetOpacity_Click" Tag="0.50" Background="#FF3A3A3A" Foreground="White"/>
+                            <MenuItem Header="75%" Click="SetOpacity_Click" Tag="0.75" Background="#FF3A3A3A" Foreground="White"/>
+                            <MenuItem Header="100%" Click="SetOpacity_Click" Tag="1.0" Background="#FF3A3A3A" Foreground="White"/>
                         </MenuItem>
                         <Separator/>
-                        <MenuItem Header="Exit" Click="Exit_Click"/>
+                        <MenuItem Header="Exit" Click="Exit_Click" Background="#FF3A3A3A" Foreground="White"/>
                     </MenuItem>
                 </Menu>
 

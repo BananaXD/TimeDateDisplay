@@ -39,6 +39,11 @@ namespace TimeDateDisplay {
             TimeText.Foreground = fontBrush;
             DateText.Foreground = fontBrush;
 
+            // Apply font family
+            TimeText.FontFamily = _settings.GetTimeFontFamily();
+            DateText.FontFamily = _settings.GetDateFontFamily();
+
+
             // Apply background color
             var backgroundBrush = _settings.GetBackgroundBrush();
             // Find the main border and update its background
